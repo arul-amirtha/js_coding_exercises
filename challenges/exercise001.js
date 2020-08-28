@@ -20,6 +20,7 @@ function addVAT(originalPrice, vatRate) {
 function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
+  let salePrice=0
   salePrice=originalPrice-(originalPrice*reduction)/100;
   if (Number.isInteger(salePrice)) return salePrice;
   else return parseFloat(salePrice.toFixed(2))
@@ -34,6 +35,7 @@ function getMiddleCharacter(str) {
 
 function reverseWord(word) {
   if (word === undefined) throw new Error("word is required");
+  let splitword=[],reverseArr=[],joinRevArr=[]
   splitword=word.split('');
   reverseArr=splitword.reverse();
   joinRevArr=reverseArr.join('');
@@ -42,7 +44,7 @@ function reverseWord(word) {
 
 function reverseAllWords(words) {
   if (words === undefined) throw new Error("words is required");
-  let revArr=[]
+  let revArr=[],i=0
   for (i=0;i<words.length;i++) {
     revArr[i]=reverseWord(words[i])
   }
