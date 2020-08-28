@@ -20,27 +20,44 @@ function addVAT(originalPrice, vatRate) {
 function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
-  // Add your code here!
+  salePrice=originalPrice-(originalPrice*reduction)/100;
+  if (Number.isInteger(salePrice)) return salePrice;
+  else return parseFloat(salePrice.toFixed(2))
 }
 
 function getMiddleCharacter(str) {
   if (str === undefined) throw new Error("str is required");
-  // Add your code here!
+  //If odd return middle character
+  if (str.length%2) return str.substr(str.length/2,1)
+  else return str.substr(str.length/2-1,2)
 }
 
 function reverseWord(word) {
   if (word === undefined) throw new Error("word is required");
-  // Add your code here!
+  splitword=word.split('');
+  reverseArr=splitword.reverse();
+  joinRevArr=reverseArr.join('');
+  return joinRevArr;
 }
 
 function reverseAllWords(words) {
   if (words === undefined) throw new Error("words is required");
-  // Add your code here!
+  let revArr=[]
+  for (i=0;i<words.length;i++) {
+    revArr[i]=reverseWord(words[i])
+  }
+  return revArr
+  
 }
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-  // Add your code here!
+  let count=0
+  let i=0
+  for(i=0;i<users.length;i++){
+    if(users[i].type=='Linux')count++
+  }
+  return count
 }
 
 function getMeanScore(scores) {
