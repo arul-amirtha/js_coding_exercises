@@ -1,43 +1,83 @@
 function findSmallNums(nums) {
   if (!nums) throw new Error("nums is required");
-  // Your code here
+  let smallnumarr = []
+  smallnumarr = nums.filter(function (n) {
+    return n < 1
+  })
+  return smallnumarr
 }
 
 function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
-  // Your code here
+  let namesStartarr = []
+  namesStartarr = names.filter(function (name) {
+    return name[0].toLowerCase() == char.toLowerCase()
+  })
+  return namesStartarr
 }
 
 function findVerbs(words) {
   if (!words) throw new Error("words is required");
-  // Your code here
+  let verbsarr = []
+  verbsarr = words.filter(function (item) {
+
+    return item.trim().substr(0, 3) == 'to '
+  })
+  return verbsarr
 }
 
 function getIntegers(nums) {
   if (!nums) throw new Error("nums is required");
-  // Your code here
+  let numarr = []
+  numarr = nums.filter(function (item) {
+
+    return Number.isInteger(item)
+  })
+  return numarr
 }
 
 function getCities(users) {
   if (!users) throw new Error("users is required");
-  // Your code here
+  let cities = []
+  let i = 0
+  cities.push(users[0].data.city.displayName)
+  for (i = 1; i < users.length; i++) {
+    cities.push(users[i].data.city.displayName)
+  }
+  return cities;
 }
 
 function getSquareRoots(nums) {
   if (!nums) throw new Error("nums is required");
-  // Your code here
+  let sqrtarr = []
+  sqrtarr = nums.map(n => {
+    return Number.isInteger(Math.sqrt(n)) ? Math.sqrt(n) : parseFloat(Math.sqrt(n).toFixed(2))
+  })
+
+  return sqrtarr
 }
 
 function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
-  // Your code here
+  let validSentences = []
+  validSentences = sentences.filter(s => {
+    return s.toLowerCase().includes(str.toLowerCase())
+  })
+  return validSentences
 }
 
 function getLongestSides(triangles) {
   if (!triangles) throw new Error("triangles is required");
-  // Your code here
+  let lsides = []
+  let sortarr = []
+  let i = 0
+  for (i = 0; i < triangles.length; i++) {
+    sortarr = triangles[i].sort(function (a, b) { return b - a })
+    lsides.push(sortarr[0])
+  }
+  return lsides;
 }
 
 module.exports = {
