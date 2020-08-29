@@ -40,11 +40,10 @@ function getIntegers(nums) {
 function getCities(users) {
   if (!users) throw new Error("users is required");
   let cities = []
-  let i = 0
-  cities.push(users[0].data.city.displayName)
-  for (i = 1; i < users.length; i++) {
-    cities.push(users[i].data.city.displayName)
-  }
+  users.forEach(function (item) {
+    cities.push(item.data.city.displayName)
+  });
+
   return cities;
 }
 
@@ -71,12 +70,12 @@ function findSentencesContaining(sentences, str) {
 function getLongestSides(triangles) {
   if (!triangles) throw new Error("triangles is required");
   let lsides = []
-  let sortarr = []
-  let i = 0
-  for (i = 0; i < triangles.length; i++) {
-    sortarr = triangles[i].sort(function (a, b) { return b - a })
+
+  triangles.forEach(function (item) {
+    let sortarr = item.sort(function (a, b) { return b - a })
     lsides.push(sortarr[0])
-  }
+  });
+
   return lsides;
 }
 
