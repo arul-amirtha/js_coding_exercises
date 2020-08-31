@@ -4,6 +4,16 @@
  */
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
+  if (typeof (n) !== 'number') throw new Error("Parameter should be a number");
+  if (!Number.isInteger(n)) throw new Error("Parameter should be an Integer");
+  let num = n
+  let sum = 0
+  let i = 0
+  for (i = 1; num > 0; i++) {
+    sum += num % 10
+    num = Math.floor(num / 10)
+  }
+  return sum;
 };
 
 /**
@@ -17,6 +27,15 @@ const sumDigits = n => {
 const createRange = (start, end, step) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
+  if (step === undefined) {
+    step = 1
+  }
+  let rangearr = []
+  let i = 0
+  for (i = start; i <= end; i += step) {
+    rangearr.push(i)
+  }
+  return rangearr;
 };
 
 /**
@@ -51,6 +70,25 @@ const createRange = (start, end, step) => {
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+  let screentimeAlert = []
+  let sumscreentime = 0
+
+  users.forEach(i => {
+    i.screenTime.forEach(d => {
+      sumscreentime = 0
+      if (d.date === date) {
+        for (let app in d.usage) {
+          sumscreentime += d.usage[app]
+        }
+
+      }
+      if (sumscreentime > 100) {
+        screentimeAlert.push(i.username)
+      }
+    })
+
+  })
+  return screentimeAlert;
 };
 
 /**
@@ -65,6 +103,11 @@ const getScreentimeAlertList = (users, date) => {
  */
 const hexToRGB = hexStr => {
   if (hexStr === undefined) throw new Error("hexStr is required");
+  const hexpatt = /^#[0-9|A-G|a-g]{6}$/;
+  let isValidhex = hexpatt.test(hexStr);
+  if (!isValidhex) throw new Error("Not a valid hexadecimal string");
+  const rgbstr = 'rgb(' + parseInt('0x' + hexStr.slice(1, 3)) + ',' + parseInt('0x' + hexStr.slice(3, 5)) + ',' + parseInt('0x' + hexStr.slice(5, 7)) + ')'
+  return rgbstr;
 };
 
 /**
@@ -79,6 +122,83 @@ const hexToRGB = hexStr => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+  //Check for winner based on first array element
+  let flag = true
+  let i = 0
+  let ch = ''
+  let j = 0
+  //Find winner along each horizontal line
+  for (i = 0; i < board.length; i++) {
+    for (j = 0; j < board[i].length; j++) {
+      if (j === 0 && board[i][j] === null) {
+        flag = false;
+        break;
+      }
+      if (j === 0) { ch = board[i][j] }
+      else if (ch !== board[i][j]) {
+        flag = false
+        break;
+      }
+    }
+    if (flag === true) {
+      return ch;
+    }
+    else flag = true
+
+  }
+  //Find winner on each vertical line
+  flag = true//Reset flag
+  for (i = 0; i < board.length; i++) {
+    for (j = 0; j < board[i].length; j++) {
+      if (j === 0 && board[j][i] === null) {
+        flag = false;
+        break;
+      }
+      if (j == 0) { ch = board[j][i] }
+      else if (ch !== board[j][i]) {
+        flag = false
+        break;
+      }
+    }
+    if (flag === true) {
+      return ch;
+    }
+    else flag = true
+
+  }
+
+  //Find winner along diagonal line 1
+  //Reset character and flag
+  if (board[0][0] !== null) {
+    ch = board[0][0]
+    flag = true
+    for (i = 1; i < board.length; i++) {
+      if (ch !== board[i][i]) {
+        flag = false
+        break;
+      }
+      if (i + 1 === board.length && flag === true) {
+        return ch;
+      }
+    }
+  }
+
+  //Find winner along other diagonal line 
+  //Reset character and flag
+  if (board[0][board.length - 1] !== null) {
+    ch = board[0][board.length - 1]
+    flag = true
+    for (i = 1; i < board.length; i++) {
+      if (ch !== board[i][board.length - 1 - i]) {
+        flag = false
+        break;
+      }
+      if (i === board.length - 1 && flag === true) {
+        return ch;
+      }
+    }
+  }
+  return null;
 };
 
 module.exports = {
