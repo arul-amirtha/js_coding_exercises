@@ -6,12 +6,12 @@ const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
   if (typeof (n) !== 'number') throw new Error("Parameter should be a number");
   if (!Number.isInteger(n)) throw new Error("Parameter should be an Integer");
-  let num = n
-  let sum = 0
-  let i = 0
+  let num = n;
+  let sum = 0;
+  let i = 0;
   for (i = 1; num > 0; i++) {
-    sum += num % 10
-    num = Math.floor(num / 10)
+    sum += num % 10;
+    num = Math.floor(num / 10);
   }
   return sum;
 };
@@ -28,12 +28,12 @@ const createRange = (start, end, step) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
   if (step === undefined) {
-    step = 1
+    step = 1;
   }
-  let rangearr = []
-  let i = 0
+  let rangearr = [];
+  let i = 0;
   for (i = start; i <= end; i += step) {
-    rangearr.push(i)
+    rangearr.push(i);
   }
   return rangearr;
 };
@@ -70,20 +70,20 @@ const createRange = (start, end, step) => {
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
-  let screentimeAlert = []
-  let sumscreentime = 0
+  let screentimeAlert = [];
+  let sumscreentime = 0;
 
   users.forEach(i => {
     i.screenTime.forEach(d => {
-      sumscreentime = 0
+      sumscreentime = 0;
       if (d.date === date) {
         for (let app in d.usage) {
-          sumscreentime += d.usage[app]
+          sumscreentime += d.usage[app];
         }
 
       }
       if (sumscreentime > 100) {
-        screentimeAlert.push(i.username)
+        screentimeAlert.push(i.username);
       }
     })
 
@@ -123,10 +123,10 @@ const hexToRGB = hexStr => {
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
   //Check for winner based on first array element
-  let flag = true
-  let i = 0
-  let ch = ''
-  let j = 0
+  let flag = true;
+  let i = 0;
+  let ch = '';
+  let j = 0;
   //Find winner along each horizontal line
   for (i = 0; i < board.length; i++) {
     for (j = 0; j < board[i].length; j++) {
@@ -136,14 +136,14 @@ const findWinner = board => {
       }
       if (j === 0) { ch = board[i][j] }
       else if (ch !== board[i][j]) {
-        flag = false
+        flag = false;
         break;
       }
     }
     if (flag === true) {
       return ch;
     }
-    else flag = true
+    else flag = true;
 
   }
   //Find winner on each vertical line
@@ -156,14 +156,14 @@ const findWinner = board => {
       }
       if (j == 0) { ch = board[j][i] }
       else if (ch !== board[j][i]) {
-        flag = false
+        flag = false;
         break;
       }
     }
     if (flag === true) {
       return ch;
     }
-    else flag = true
+    else flag = true;
 
   }
 
@@ -174,7 +174,7 @@ const findWinner = board => {
     flag = true
     for (i = 1; i < board.length; i++) {
       if (ch !== board[i][i]) {
-        flag = false
+        flag = false;
         break;
       }
       if (i + 1 === board.length && flag === true) {
@@ -186,11 +186,11 @@ const findWinner = board => {
   //Find winner along other diagonal line 
   //Reset character and flag
   if (board[0][board.length - 1] !== null) {
-    ch = board[0][board.length - 1]
-    flag = true
+    ch = board[0][board.length - 1];
+    flag = true;
     for (i = 1; i < board.length; i++) {
       if (ch !== board[i][board.length - 1 - i]) {
-        flag = false
+        flag = false;
         break;
       }
       if (i === board.length - 1 && flag === true) {

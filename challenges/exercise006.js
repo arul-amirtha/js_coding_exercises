@@ -10,7 +10,7 @@ const sumMultiples = arr => {
   let sum = 0;
   arr.forEach(n => {
     if (n % 3 == 0 || n % 5 == 0) {
-      sum += n
+      sum += n;
     }
   });
   return sum;
@@ -23,7 +23,7 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
-  if (typeof (str) !== 'string') return false
+  if (typeof (str) !== 'string') return false;
   const isValid = !/[^GCTA]/.test(str);
   return isValid
 };
@@ -39,9 +39,9 @@ const getComplementaryDNA = str => {
   const compstring = { 'A': 'T', 'T': 'A', 'G': 'C', 'C': 'G' }
   const dnapatt = /[ATCG]/g;
   let compseq = str.replace(dnapatt, function (dna) {
-    return compstring[dna]
+    return compstring[dna];
   })
-  return compseq
+  return compseq;
 };
 
 /**
@@ -53,15 +53,15 @@ const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
   if (typeof (n) !== 'number') throw new Error("Parameter should be a number");
   if (!Number.isInteger(n)) throw new Error("Parameter should be a number not a float");
-  let isflag = true
-  if (n == 1) return false
+  let isflag = true;
+  if (n == 1) return false;
   for (let i = 2; i <= n - 1; i++) {
     if (n % i === 0) {
       isflag = false;
       break;
     }
   }
-  return isflag
+  return isflag;
 };
 
 /**
@@ -78,8 +78,8 @@ const isItPrime = n => {
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
-  let newmatrix = []
-  let newarr = []
+  let newmatrix = [];
+  let newarr = [];
   let i = 0
   for (i = 0; i < n; i++) {
     newarr.push(fill);
@@ -108,12 +108,12 @@ const areWeCovered = (staff, day) => {
   if (staff.length === 0) {
     return false;
   }
-  let i;
+  let i = 0;
   let countstaff = 0;
-  let rotadays = []
+  let rotadays = [];
   for (i = 0; i < staff.length; i++) {
-    rotadays = staff[i].rota.filter(r => r.toLowerCase().includes(day.toLowerCase()))
-    countstaff += rotadays.length
+    rotadays = staff[i].rota.filter(r => r.toLowerCase().includes(day.toLowerCase()));
+    countstaff += rotadays.length;
   }
   return countstaff >= 3 ? true : false;
 };
